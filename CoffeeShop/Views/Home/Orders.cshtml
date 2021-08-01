@@ -1,0 +1,60 @@
+﻿@model CoffeeShop.ViewModels.OrdersViewModel
+@using CoffeeShop.Helpers
+
+@{
+    ViewData["Title"] = "Order List";
+
+    // select lists to view
+    ViewBag.Volumes = SelectListHelpers.EnumCoffeeVolumeToSelectList();
+    ViewBag.Types = SelectListHelpers.EnumCoffeeTypeToSelectList();
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+
+
+@foreach (CoffeeOrder order in Model.Orders)
+{
+    <table class="table">
+        <thead class="thead-light">
+            Created: @order.CreateAt.ToLocalTime()
+
+            <tr>
+                <th>Coffee Type</th>
+                <th>Coffee Volume (liters)</th>
+                <th>Sugar Teaspoons</th>
+                <th>Has Milk</th>
+                <th>Has Cup Cap</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in order.Coffees)
+        {
+            <tr>
+                <th>@item.CoffeeType</th>
+                <th>@String.Format("{0:f3}", ((double)item.CoffeeVolume / 1000))</th>
+                <th>@item.QuantitySugarTeaspoons</th>
+
+                @if (item.HasMilk)
+                {
+                    <th>Has</th>
+                }
+                else
+                {
+                    <th>Not</th>
+                }
+
+                @if (item.HasCupCap)
+                {
+                    <th>Has</th>
+                }
+                else
+                {
+                    <th>Not</th>
+                }
+            </tr>
+        }
+    </table>
+}
+

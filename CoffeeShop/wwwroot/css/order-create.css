@@ -1,0 +1,27 @@
+﻿.field-validation-error {
+    color: #b94a48;
+}
+
+select.input-validation-valid {
+    border: 1px solid #198754;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+select.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}

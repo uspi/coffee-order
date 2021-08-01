@@ -1,0 +1,115 @@
+﻿@using CoffeeShop.Helpers
+
+@model CoffeeShop.Models.Coffee
+
+@{
+    ViewBag.Title = "New Order";
+
+
+    // select lists to view
+    ViewBag.Volumes = SelectListHelpers.EnumCoffeeVolumeToSelectList();
+    ViewBag.Types = SelectListHelpers.EnumCoffeeTypeToSelectList();
+}
+
+@*<style>
+    .field-validation-error {
+        color: #b94a48;
+    }
+
+    select.input-validation-valid {
+        border: 1px solid #198754;
+    }
+
+    input.input-validation-error {
+        border: 1px solid #b94a48;
+    }
+
+    select.input-validation-error {
+        border: 1px solid #b94a48;
+    }
+
+    input[type="checkbox"].input-validation-error {
+        border: 0 none;
+    }
+
+    .validation-summary-errors {
+        color: #b94a48;
+    }
+
+    .validation-summary-valid {
+        display: none;
+    }
+</style>*@
+
+<link type="text/css" href="~/css/order-create.css" rel="stylesheet" />
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+<div class="form-check form-group center-block ">
+    <form asp-action="Create" asp-controller="Home" asp-antiforgery="true" class="w-50 p-3 mx-auto">
+
+        <!-- type -->
+        <div class="row text-left">
+            <div class="col align-self-center">
+                <div class="form-group align-middle">
+                    <label asp-for="CoffeeType" class="control-label ">Select Coffee Type</label>
+                    <select asp-for="CoffeeType" asp-items="ViewBag.Types" class="form-control"></select>
+                    <span asp-validation-for="CoffeeType"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- volume -->
+        <div class="row text-left">
+            <div class="col align-self-center">
+                <div class="form-group">
+                    <label asp-for="CoffeeVolume" class="control-label">Select Coffee Volume</label>
+                    <select asp-for="CoffeeVolume" asp-items="ViewBag.Volumes" class="form-control"></select>
+                    <span asp-validation-for="CoffeeVolume"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- sugar -->
+        <div class="row text-left">
+            <div class="col align-self-start">
+                <div class="form-group">
+                    <label asp-for="QuantitySugarTeaspoons" class="form-label">Sugar</label>
+                    <input asp-for="QuantitySugarTeaspoons" type="number" class="form-control" />
+                    <span asp-validation-for="QuantitySugarTeaspoons"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- milk -->
+        <div class="row text-left">
+            <div class="col align-self-start">
+                <div class="form-check form-group">
+                    <input asp-for="HasMilk" type="checkbox" class="form-check-input" />
+                    <label asp-for="HasMilk" class="form-check-label">Milk</label>
+                    <span asp-validation-for="HasMilk"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- cup cap -->
+        <div class="row text-left">
+            <div class="col align-self-start">
+                <div class="form-check form-group">
+                    <input asp-for="HasCupCap" type="checkbox" class="form-check-input" />
+                    <label asp-for="HasCupCap" class="form-check-label">Cup Cap</label>
+                    <span asp-validation-for="HasCupCap"></span>
+                </div>
+            </div>
+        </div>
+
+
+        @*<div class="validation" asp-validation-summary="ModelOnly"></div>*@
+
+        <div>
+            <input type="submit" value="Send" class="btn btn-primary btn-lg btn-block" />
+        </div>
+
+    </form>    
+</div>
